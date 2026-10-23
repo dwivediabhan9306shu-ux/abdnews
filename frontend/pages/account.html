@@ -790,6 +790,13 @@
                     this.classList.add('active');
                 });
             });
+
+            // Open the section named in the URL hash (e.g. account.html#subscription)
+            const hashSection = window.location.hash.replace('#', '');
+            if (hashSection) {
+                const target = document.querySelector(`.menu-link[data-section="${hashSection}"]`);
+                if (target) target.click();
+            }
         }
 
         // Show section

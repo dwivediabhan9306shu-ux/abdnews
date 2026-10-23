@@ -1,0 +1,9 @@
+backend/
+.github/
+.claude/
+frontend/node_modules/
+node_modules/
+*.md
+*.sh
+*.py
+docker-compose.yml

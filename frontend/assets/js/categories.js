@@ -4,7 +4,7 @@
  */
 
 const CategoryManager = {
-    API_BASE: 'http://localhost:8000/api',
+    API_BASE: '/api',
     categories: [],
     categoryTree: [],
 
@@ -262,7 +262,7 @@ const CategoryManager = {
                 articlesContainer.innerHTML = articlesData.results.map(article => `
                     <article class="article-card">
                         <a href="article.html?slug=${article.slug}">
-                            <img src="${article.featured_image || '../assets/images/placeholder.jpg'}" 
+                            <img src="${article.featured_image || '/assets/images/news/placeholder.jpg'}" 
                                  alt="${article.title}">
                             <div class="article-content">
                                 <span class="category-badge" style="background-color: ${category.color}">

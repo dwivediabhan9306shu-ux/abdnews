@@ -978,7 +978,7 @@ function renderEditorialPage(articles) {
 
 async function loadEditorialPage() {
     try {
-        const data = await apiGet('/articles/featured/', { limit: 8 });
+        const data = await apiGet('/news/articles/featured/', { limit: 8 });
         const articles = data.results || data || [];
         renderEditorialPage(articles);
     } catch (error) {
@@ -1050,10 +1050,10 @@ async function loadArticlePage() {
                             This is a preview. Subscribe to ABD News Premium to access full articles, exclusive content, and much more.
                         </p>
                         <div style="display: flex; gap: 15px; justify-content: center;">
-                            <a href="/pages/subscription.html" style="background: var(--toi-red); color: white; padding: 14px 30px; border-radius: 8px; text-decoration: none; font-weight: 600; transition: all 0.3s;">
+                            <a href="/pages/account.html#subscription" style="background: var(--toi-red); color: white; padding: 14px 30px; border-radius: 8px; text-decoration: none; font-weight: 600; transition: all 0.3s;">
                                 View Plans
                             </a>
-                            ${!isAuthenticated() ? `
+                            ${!(typeof isAuthenticated === 'function' && isAuthenticated()) ? `
                                 <a href="/pages/signup.html" style="background: white; color: var(--toi-red); padding: 14px 30px; border-radius: 8px; text-decoration: none; font-weight: 600; border: 2px solid var(--toi-red); transition: all 0.3s;">
                                     Sign Up
                                 </a>
