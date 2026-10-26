@@ -30,6 +30,7 @@ class Category(models.Model):
         help_text='Category name'
     )
     slug = models.SlugField(
+        max_length=255,
         unique=True,
         blank=True,
         help_text='URL-friendly version of name (auto-generated)'
@@ -115,6 +116,7 @@ class Tag(models.Model):
         help_text='Tag name'
     )
     slug = models.SlugField(
+        max_length=255,
         unique=True,
         blank=True,
         help_text='URL-friendly version of name (auto-generated)'
@@ -152,6 +154,7 @@ class Article(models.Model):
         help_text='Article title'
     )
     slug = models.SlugField(
+        max_length=255,
         unique=True,
         blank=True,
         help_text='URL-friendly version of title (auto-generated)'
@@ -453,6 +456,7 @@ class Video(models.Model):
         help_text='Video title'
     )
     slug = models.SlugField(
+        max_length=255,
         unique=True,
         blank=True,
         help_text='URL-friendly version of title (auto-generated)'

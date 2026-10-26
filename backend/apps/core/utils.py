@@ -21,9 +21,11 @@ def generate_unique_slug(instance, text: str, slug_field: str = 'slug') -> str:
     Returns:
         A unique slug string
     """
-    base_slug = slugify(text)
-    unique_slug = base_slug
     model_class = instance.__class__
+    # Respect the slug column length (Postgres rejects values that are too long)
+    max_length = model_class._meta.get_field(slug_field).max_length or 50
+    base_slug = slugify(text)[:max_length].rstrip('-') or 'item'
+    unique_slug = base_slug
     counter = 1
     
     # Get the queryset, excluding the current instance if it has a pk
@@ -34,7 +36,8 @@ def generate_unique_slug(instance, text: str, slug_field: str = 'slug') -> str:
     
     # Keep incrementing counter until we find a unique slug
     while queryset.filter(**{slug_field: unique_slug}).exists():
-        unique_slug = f"{base_slug}-{counter}"
+        suffix = f"-{counter}"
+        unique_slug = f"{base_slug[:max_length - len(suffix)].rstrip('-')}{suffix}"
         counter += 1
     
     return unique_slug
